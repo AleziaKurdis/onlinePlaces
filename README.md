@@ -1,2 +1,2 @@
 # onlinePlaces
-online place api viewer for overte
+Online (HTML) Place API viewer for overte
