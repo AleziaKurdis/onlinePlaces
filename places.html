@@ -1071,7 +1071,6 @@
             var placeList = [];
             var currentLocation = "";
             var warning = "";
-            var metaverseList = [];
 
             var lifeOnlyFilter = false;
             
@@ -1093,11 +1092,10 @@
 
             //LISTENER FROM JS FILE:
             //"PLACE_DATA"
-            function managePlaceData(placeData, metaverseServers) {
+            function managePlaceData(placeData) {
                 placeList = [];
                 placeList = placeData;
                 warning = message.warning;
-                metaverseList = metaverseServers;
                 generateContent();
             }
             
