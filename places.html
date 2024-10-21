@@ -1549,9 +1549,7 @@
 
                 function transmitPortalList() {
                     portalList = [];
-                    var extractedData;
-
-                    extractedData = getContent(METAVERSE_SERVER_URL + "/api/v1/places?status=online&per_page=1000");
+                    var extractedData = getContent(METAVERSE_SERVER_URL + "/api/v1/places?status=online&per_page=1000");
                     alert(JSON.stringify(extractedData));
                     placesData = JSON.parse(extractedData);
                     processData();
@@ -1570,6 +1568,7 @@
                 }
                 
                 function contentProcess(y) {
+                    alert(JSON.stringify(y));//################################
                     return y;
                 }
                 
