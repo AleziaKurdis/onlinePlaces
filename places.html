@@ -1088,7 +1088,7 @@
 
             var placesData;
             var portalList = [];
-
+            var METAVERSE_SERVER_URL = "https://mv.overte.org/server";
             var PERSISTENCE_ORDERING_CYCLE = 5 * 24 * 3600 * 1000; //5 days
 
             //LISTENER FROM JS FILE:
@@ -1546,10 +1546,16 @@
 
                 function transmitPortalList() {
                     portalList = [];
-                    var dirServURL = "https://mv.overte.org/server/api/v1/places?status=online&per_page=1000";
-                    var extractedData = getContent(dirServURL);
-                    alert(JSON.stringify(extractedData)); //################################
-                    placesData = JSON.parse(extractedData);
+                    var dirServURL = METAVERSE_SERVER_URL + "/api/v1/places?status=online&per_page=1000";
+                    getContent(dirServURL);
+                };
+
+                async function getContent(url) {
+                    let myObject = await fetch(url);
+                    let myText = await myObject.text();
+                    
+                    alert(JSON.stringify(myText)); //################################
+                    placesData = JSON.parse(myText);
                     processData();
                     
                     addUtilityPortals();
@@ -1557,12 +1563,6 @@
                     portalList.sort(sortOrder);
                     
                     managePlaceData(portalList);
-                };
-
-                async function getContent(url) {
-                    let myObject = await fetch(url);
-                    let myText = await myObject.text();
-                    return myText;
                 }
 
                 function processData(){
