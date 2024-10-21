@@ -589,7 +589,7 @@
                     var extractedData;
 
                     extractedData = getContent(METAVERSE_SERVER_URL + "/api/v1/places?status=online&per_page=1000");
-                    alert(extractedData);
+                    alert(JSON.stringify(extractedData));
                     placesData = JSON.parse(extractedData);
                     processData();
                     
