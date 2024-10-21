@@ -1147,7 +1147,7 @@
                     formatedList = formatedList + "<td width='95%' valign='top' class='warningTitle'>" + warning + "</td>";
                     formatedList = formatedList + "</tr>";
                     formatedList = formatedList + "</table>";
-                    formatedList = formatedList + "</div>";                    
+                    formatedList = formatedList + "</div>";
                 }
 
                 for (var i = 0; i < placeRecords.length; i++) {
@@ -1551,8 +1551,7 @@
                 async function getContent(url) {
                     let myObject = await fetch(url);
                     let myText = await myObject.text();
-                    
-                    alert(JSON.stringify(myText)); //################################
+
                     placesData = JSON.parse(myText);
                     processData();
                     
