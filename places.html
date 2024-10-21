@@ -1561,17 +1561,12 @@
                     managePlaceData(portalList);
                 };
 
-                function getContent(url) {
-                    fetch(url)
-                    .then(x => x.text())
-                    .then(y => contentProcess(y));
+                async function getContent(url) {
+                    let myObject = await fetch(url);
+                    let myText = await myObject.text();
+                    return myText;
                 }
-                
-                function contentProcess(y) {
-                    alert(JSON.stringify(y));//################################
-                    return y;
-                }
-                
+
                 function processData(){
                     var places = placesData.data.places;
                     for (var i = 0;i < places.length; i++) {
