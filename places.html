@@ -981,29 +981,6 @@
                 margin: 0px;
             }
         </style>
-        <script>
-            var thisPageName = "places.html";        
-            var currentPath = window.location.protocol + "//" + window.location.host + window.location.pathname;
-            var ROOTPATH = currentPath.replace(thisPageName, "");
-            
-            var placeList = [];
-            var currentLocation = "";
-            var warning = "";
-            var metaverseList = [];
-
-            var lifeOnlyFilter = false;
-            
-            var localFilter = true;
-            var federationFilter = true;
-            var externalFilter = true; 
-            
-            var maturityFilter = ["adult", "mature", "teen", "everyone", "unrated"];
-            var seachedFieldsFilter = ["name", "description", "owners", "tags"];
-            
-            var NUMBER_OF_RECORDS_PER_LOAD = 20;
-            var loadRecordsUpTo = NUMBER_OF_RECORDS_PER_LOAD;
-            var currentListFormat = "PLACES";
-        </script>
     </head>
     <body>
       <div id="main">
@@ -1087,6 +1064,33 @@
         </div>
         </div>
         <script>
+            var thisPageName = "places.html";
+            var currentPath = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            var ROOTPATH = currentPath.replace(thisPageName, "");
+            
+            var placeList = [];
+            var currentLocation = "";
+            var warning = "";
+            var metaverseList = [];
+
+            var lifeOnlyFilter = false;
+            
+            var localFilter = true;
+            var federationFilter = true;
+            var externalFilter = true; 
+            
+            var maturityFilter = ["adult", "mature", "teen", "everyone", "unrated"];
+            var seachedFieldsFilter = ["name", "description", "owners", "tags"];
+            
+            var NUMBER_OF_RECORDS_PER_LOAD = 20;
+            var loadRecordsUpTo = NUMBER_OF_RECORDS_PER_LOAD;
+            var currentListFormat = "PLACES";
+
+            var placesData;
+            var portalList = [];
+
+            var PERSISTENCE_ORDERING_CYCLE = 5 * 24 * 3600 * 1000; //5 days
+
             //LISTENER FROM JS FILE:
             //"PLACE_DATA"
             function managePlaceData(placeData, metaverseServers) {
@@ -1532,15 +1536,8 @@
         //#####################         FETCH AND PREPROCESS           ######################
         //###################################################################################
         //###################################################################################
-        
-                var METAVERSE_SERVER_URL = "https://mv.overte.org/server";
-                var REQUEST_TIMEOUT = 10000; //10 seconds
 
-                var httpRequest = null;
-                var placesData;
-                var portalList = [];
 
-                var PERSISTENCE_ORDERING_CYCLE = 5 * 24 * 3600 * 1000; //5 days
 
                 function readyForContent() {
                     transmitPortalList();
@@ -1549,8 +1546,9 @@
 
                 function transmitPortalList() {
                     portalList = [];
-                    var extractedData = getContent(METAVERSE_SERVER_URL + "/api/v1/places?status=online&per_page=1000");
-                    alert(JSON.stringify(extractedData));
+                    var dirServURL = "https://mv.overte.org/server/api/v1/places?status=online&per_page=1000";
+                    var extractedData = getContent(dirServURL);
+                    alert(JSON.stringify(extractedData)); //################################
                     placesData = JSON.parse(extractedData);
                     processData();
                     
