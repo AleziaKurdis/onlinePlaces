@@ -16,7 +16,7 @@
     <head>
         <meta charset="utf-8">
         <title>Places</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
         <link rel="stylesheet" href="fonts.css">
         <style>
             body {
@@ -129,7 +129,7 @@
                 color: #ffffff;
                 width: 100%;
                 overflow-y: scroll;
-                height: 550px;
+                height: 600px;
                 background-color: #404040;
                 background-image: url("icons/sidewalk.png");
                 background-repeat: repeat-y;
@@ -239,7 +239,7 @@
             #eventDescTextBox {
                 width: 100%;
                 font-weight: 600;
-                font-size: 14px;    
+                font-size: 14px;
             }
 
             #eventErrorMessage {
@@ -589,7 +589,7 @@
                 width: 100%;
                 text-align: left;
                 font-size: 10px;
-                font-weight: 700px;       
+                font-weight: 700px;
                 padding: 0px;    
             }
 
@@ -1314,7 +1314,7 @@
                                     formatedList = formatedList + "<table class='placeTable'>";
                                     formatedList = formatedList + "    <tr valign = 'top'>";
                                     formatedList = formatedList + "        <td width='2%'></td>";                                
-                                    formatedList = formatedList + "        <td align='left' width='75%' onclick='teleport(" + '"' + placeRecords[i].id + '"' + ", " + '"' + placeUrl + '"' + "); return false;'><a class= 'placeTitle" + placeTitlePromoted + "' href='javascript:void(0)' onclick='teleport(" + '"' + placeRecords[i].id + '"' + ", " + '"' + placeUrl + '"' + "); return false;'>" + placeRecords[i].name + "</a></td>";
+                                    formatedList = formatedList + "        <td align='left' width='75%' onclick='openDetail(" + '"' + placeRecords[i].id + '"' + "); return false;'><a class= 'placeTitle" + placeTitlePromoted + "' href='javascript:void(0)' onclick='openDetail(" + '"' + placeRecords[i].id + '"' + "); return false;'>" + placeRecords[i].name + "</a></td>";
                                     if (placeRecords[i].category !== "Z") {
                                         formatedList = formatedList + "        <td align='right' ><span style='padding: 0%; cursor: pointer;' onclick='openDetail(" + '"' + placeRecords[i].id + '"' + ")'><img src='icons/info.png' width='26' height='26' draggable='false'></span></td>";
                                     }
@@ -1324,7 +1324,7 @@
                                         formatedList = formatedList + "<table class='placeTable'" + prompotionDescHeight + ">";
                                         formatedList = formatedList + "    <tr valign = 'bottom'>";
                                         formatedList = formatedList + "        <td width='2%'></td>";
-                                        formatedList = formatedList + "        <td align='left' width='88%' class='place-entry-description' onclick='teleport(" + '"' + placeRecords[i].id + '"' + ", " + '"' + placeUrl + '"' + "); return false;'>" + shortenedDescription + "</td>";
+                                        formatedList = formatedList + "        <td align='left' width='88%' class='place-entry-description' onclick='openDetail(" + '"' + placeRecords[i].id + '"' + "); return false;'>" + shortenedDescription + "</td>";
                                         formatedList = formatedList + "        <td align='right' class='presenceOfLife-" + placeRecords[i].accessStatus + "'>&#9603;</td>";
                                         formatedList = formatedList + "    </tr>";
                                         formatedList = formatedList + "</table>";
@@ -1469,11 +1469,9 @@
                 if (tab === "PLACES") {
                     document.getElementById("listFormatPlaces").disabled = true;
                     document.getElementById("listFormatDomains").disabled = false;
-                    document.getElementById("listFormatMetaverse").disabled = false;
                 } else if (tab === "DOMAINS") {
                     document.getElementById("listFormatPlaces").disabled = false;
                     document.getElementById("listFormatDomains").disabled = true;
-                    document.getElementById("listFormatMetaverse").disabled = false;
                 }
 
                 loadRecordsUpTo = NUMBER_OF_RECORDS_PER_LOAD;
@@ -1503,7 +1501,7 @@
                 if (placeDetail.metaverseRegion !== "local") {
                     placeUrl = "hifi://" + placeDetail.address;
                 }                
-                document.getElementById("placeDetail-visitBtn-container").innerHTML = "<button id='placeDetail-visitBtn' onclick='teleport(" + '"' + placeDetail.id + '"' + ", " + '"' + placeUrl + '"' + "); return false;'>Visit</button>";
+                //document.getElementById("placeDetail-visitBtn-container").innerHTML = "<button id='placeDetail-visitBtn' onclick='teleport(" + '"' + placeDetail.id + '"' + ", " + '"' + placeUrl + '"' + "); return false;'>Visit</button>";
                 document.getElementById("placeDetail-maturity").innerHTML = placeDetail.maturity.toUpperCase();
                 document.getElementById("placeDetail-maturity").className = placeDetail.maturity + "FilterOn placeMaturity";
                 document.getElementById("placeDetail-domain").innerHTML = placeDetail.domain.toUpperCase();
